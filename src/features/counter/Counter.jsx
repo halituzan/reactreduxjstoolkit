@@ -21,15 +21,20 @@ export function Counter() {
     if (hasErrors) return <p>Cannot display recipes...</p>;
 
     return datas?.meals?.map((recipe) => (
-      <div key={recipe.idMeal} className="tile">
+      <div
+        key={recipe.idMeal}
+        className="tile col-12 col-sm-6 col-md-4 col-lg-3"
+      >
         <h2>{recipe.strMeal}</h2>
-        <img src={recipe.strMealThumb} alt="" />
+        <img src={recipe.strMealThumb} alt={recipe.strMeal} />
+        <p>{recipe.strInstructions}</p>
+        <p>{recipe.strArea}</p>
       </div>
     ));
   };
 
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-center align-items-center">
       <div>
         <button
           aria-label="Increment value"
@@ -45,14 +50,7 @@ export function Counter() {
           Decrement
         </button>
       </div>
-      <input
-        type="text"
-        name="inp"
-        id="inp"
-        value={namer}
-        onChange={(e) => dispatch(namemi(e.target.value))}
-      />
-      {renderRecipes()}
+      <div className="container row">{renderRecipes()}</div>
     </div>
   );
 }

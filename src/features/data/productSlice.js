@@ -41,7 +41,7 @@ export function fetchProduct() {
       //const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
       // const data = await response.json()
 
-      const { data } = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      const { data } = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?f=t')
 
       dispatch(getProductSuccess(data))
     } catch (error) {
