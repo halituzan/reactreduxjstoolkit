@@ -15,7 +15,7 @@ export const productSlice = createSlice({
     },
     getProductSuccess: (state, { payload }) => {
       console.log(payload)
-      state.datas = payload
+      state.datas = payload.meals
       state.loading = false
       state.hasErrors = false
     },
@@ -33,15 +33,12 @@ export const productSelector = state => state.product
 export default productSlice.reducer
 
 
-export function fetchProduct() {
+export function fetchProduct(searching) {
   return async dispatch => {
     dispatch(getProduct())
 
     try {
-      //const response = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
-      // const data = await response.json()
-
-      const { data } = await axios.get('https://www.themealdb.com/api/json/v1/1/search.php?f=t')
+      const { data } = await axios.get(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searching}`)
 
       dispatch(getProductSuccess(data))
     } catch (error) {
